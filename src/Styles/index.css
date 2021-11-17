@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import './presets.css'; /* PRESETS/GLOBAL STYLES */
+:root {
+  --chelsea-blue: #034694;
+  --azure: #007fff;
+  --capri: #00bfff;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 16px;
+  height: 100%;
+}
+body {
+  color: #f5f5f5;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  min-height: 100%;
+}
+a {
+  color: var(--capri);
+  text-decoration: none;
+  font-weight: 500;
+}
+a:hover {
+  color: var(--azure);
+  text-decoration: underline;
+}
+p {
+  font-weight: 300;
+  margin-top: 1rem;
+}
+li {
+  list-style: none;
+}
+form input {
+  border: 1px solid gray;
+  border-radius: 4px;
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  padding: 1rem 0.5rem;
+  outline: 0;
+  transition: 0.3s ease;
+  width: 100%;
+}
+form input:focus {
+  border: 1px solid transparent;
+  border-bottom: 1px solid var(--azure);
+  border-radius: 0px;
+}
+form input:focus::placeholder {
+  color: var(--capri);
+}
+button {
+  border: 1px solid gray;
+  border-radius: 50px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+  padding: 0.75rem 2rem;
+  outline: 0;
+  transition: 0.3s ease;
+  width: 100%;
+}
+button:hover {
+  border: 1px solid lightgray;
+  background-color: rgb(25, 25, 25);
+}
+button.primary {
+  border: 1px solid transparent;
+  background-color: var(--chelsea-blue);
+}
+button.primary:hover {
+  background-color: var(--azure);
+}
+.hr {
+  border-top: 1px solid #2e2e2e;
+  margin-top: 1rem;
+}
