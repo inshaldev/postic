@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 
 export const SignUpPage = () => {
   return (
-    <div className="signup-page fl-col-cen-cen min-h-100 w-25">
+    <div className="signup-page">
       <h1>Sign In to Postic</h1>
-      <form className="signup-form fl-col-cen-cen">
-        <div className="inline fl-row-between-cen">
+      <form className="signup-form">
+        <div className="inline">
           <input type="text" placeholder="First Name" className="w-48" />
           <input type="text" placeholder="Last Name" className="w-48" />
         </div>
@@ -17,7 +17,7 @@ export const SignUpPage = () => {
         </button>
       </form>
       <p>
-        Already a user? <Link to="/login">Sign in</Link>
+        Already a user? <Link to="/postic/login">Sign in</Link>
       </p>
     </div>
   );

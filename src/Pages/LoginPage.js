@@ -16,7 +16,7 @@ export const LoginPage = () => {
         <button className="w-auto">Forgot password?</button>
       </form>
       <p>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
+        Don't have an account? <Link to="/postic/signup">Sign Up</Link>
       </p>
     </div>
   );

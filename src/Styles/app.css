@@ -11,7 +11,15 @@
 .signup-page {
   padding: 2rem;
 }
-.main-page-heading {
+.main-page {
+  min-height: 100vh;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main-heading {
   font-weight: 800;
   margin-bottom: 2rem;
 }
@@ -20,4 +28,70 @@
 }
 .main-login-section button {
   margin-top: 0.5rem;
+}
+.signup-page {
+  min-height: 100vh;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signup-form .inline {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+@media only screen and (max-width: 600px) {
+  .main-page,
+  .login-page,
+  .signup-page {
+    width: 100%;
+  }
+  .login-form,
+  .signup-form {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .main-page,
+  .login-page,
+  .signup-page {
+    width: 60%;
+  }
+  .login-form,
+  .signup-form {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .main-page,
+  .login-page,
+  .signup-page {
+    width: 45%;
+  }
+  .login-form,
+  .signup-form {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .main-page,
+  .login-page,
+  .signup-page {
+    width: 35%;
+  }
+  .login-form,
+  .signup-form {
+    width: 100%;
+  }
 }
