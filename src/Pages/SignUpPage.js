@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 
 export const SignUpPage = () => {
+  const handleSignup = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="signup-page">
       <h1>Sign In to Postic</h1>
-      <form className="signup-form">
+      <form className="signup-form" onSubmit={handleSignup}>
         <div className="inline">
           <input type="text" placeholder="First Name" className="w-48" />
           <input type="text" placeholder="Last Name" className="w-48" />
