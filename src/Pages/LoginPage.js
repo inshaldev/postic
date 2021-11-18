@@ -10,9 +10,11 @@ export const LoginPage = () => {
       <form className="login-form fl-col-cen-cen w-100" onSubmit={handleLogin}>
         <input type="email" placeholder="Email address" />
         <input type="password" placeholder="Password" />
-        <button type="submit" className="primary">
-          Log In
-        </button>
+        <Link to="/home">
+          <button type="submit" className="primary">
+            Log In
+          </button>
+        </Link>
         <button className="w-auto">Forgot password?</button>
       </form>
       <p>
