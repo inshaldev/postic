@@ -5,9 +5,11 @@ import { useData } from '../Context/Contexts';
 import { useNavigate } from 'react-router';
 
 export const HomePage = () => {
-  const { userLoggedIn } = useData();
+  const { userLoggedIn, getPosts } = useData();
   const navigate = useNavigate();
-
+  useEffect(() => {
+    getPosts();
+  }, []);
   useEffect(() => {
     return !userLoggedIn ? navigate('/') : false;
   });

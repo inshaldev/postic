@@ -1,75 +1,82 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, { useState, useEffect, useContext, createContext } from 'react';
+import { auth, postsRef, db } from '../Firebase/config';
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from 'firebase/auth';
+import {
+  getDocs,
+  addDoc,
+  setDoc,
+  deleteDoc,
+  doc,
+  Timestamp,
+} from 'firebase/firestore';
 
 const Data = createContext();
 export const useData = () => useContext(Data);
 
 export const Contexts = ({ children }) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [displayNewPost, setDisplayNewPost] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     id: '350z',
     name: 'Sun Tzu',
     username: `@theartofwar`,
   });
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      name: 'Sun Tzu',
-      username: '@theartofwar',
+
+  // USER FUNCTIONS:
+  const loginAccount = async (email, pass) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const registerAccount = async (email, pass) => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, pass);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // POSTS:
+  const [posts, setPosts] = useState([]);
+  const addPost = async (content) => {
+    await addDoc(postsRef, {
+      authorName: currentUser.name,
+      authorUsername: currentUser.username,
+      content: content,
       likes: 0,
       comments: 0,
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
-    },
-    {
-      id: 1,
-      name: 'Sun Tzu',
-      username: '@theartofwar',
-      likes: 0,
-      comments: 0,
-      content: '',
-    },
-    {
-      id: 1,
-      name: 'Sun Tzu',
-      username: '@theartofwar',
-      likes: 0,
-      comments: 0,
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
-    },
-    {
-      id: 1,
-      name: 'Sun Tzu',
-      username: '@theartofwar',
-      likes: 0,
-      comments: 0,
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
-    },
-    {
-      id: 1,
-      name: 'Sun Tzu',
-      username: '@theartofwar',
-      likes: 0,
-      comments: 0,
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
-    },
-    {
-      id: 1,
-      name: 'Sun Tzu',
-      username: '@theartofwar',
-      likes: 0,
-      comments: 0,
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
-    },
-  ]);
+      createdAt: Timestamp.now(),
+    });
+    getPosts();
+  };
+  const deletePost = async (id) => {
+    await deleteDoc(doc(db, 'posts', id));
+    getPosts();
+  };
+  const getPosts = async () => {
+    const postsFetched = [];
+    await getDocs(postsRef).then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        postsFetched.push({
+          ...doc.data(),
+          id: doc.id,
+        });
+      });
+    });
+    setPosts(postsFetched);
+  };
+  // POSTS END
 
   const contextValue = {
-    displayNewPost,
-    setDisplayNewPost,
+    addPost,
+    getPosts,
+    deletePost,
     posts,
     setPosts,
     currentUser,

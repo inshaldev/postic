@@ -69,6 +69,29 @@
   padding: 1rem;
   margin-top: 1rem;
 }
+.post-delete {
+  border: 1px solid var(--crimson);
+  text-align: center;
+  border-radius: 50%;
+  padding: 0;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+.post-delete:hover {
+  border: 1px solid var(--candy-red);
+  background-color: var(--crimson);
+}
+.post-delete:active {
+  border: 1px solid var(--candy-red);
+  background-color: var(--candy-red);
+}
+.post-inline {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
 @media only screen and (max-width: 600px) {
   .posts {
     width: 80%;
