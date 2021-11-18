@@ -6,7 +6,7 @@ export const SignUpPage = () => {
   };
   return (
     <div className="signup-page">
-      <h1>Sign In to Postic</h1>
+      <h1>Sign Up now and share yo' thoughts!</h1>
       <form className="signup-form" onSubmit={handleSignup}>
         <div className="inline">
           <input type="text" placeholder="First Name" className="w-48" />
@@ -20,7 +20,7 @@ export const SignUpPage = () => {
         </button>
       </form>
       <p>
-        Already a user? <Link to="/login">Sign in</Link>
+        Already a user? <Link to="/login">Log In</Link>
       </p>
     </div>
   );

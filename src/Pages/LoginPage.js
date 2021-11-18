@@ -11,7 +11,7 @@ export const LoginPage = () => {
         <input type="email" placeholder="Email address" />
         <input type="password" placeholder="Password" />
         <button type="submit" className="primary">
-          Sign In
+          Log In
         </button>
         <button className="w-auto">Forgot password?</button>
       </form>
