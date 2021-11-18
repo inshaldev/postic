@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { HomePage } from './Pages/HomePage';
 import { LoginPage } from './Pages/LoginPage';
@@ -7,7 +7,8 @@ import { SignUpPage } from './Pages/SignUpPage';
 import './Styles/app.css';
 
 function App() {
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  // const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const userLoggedIn = false;
 
   return (
     <div className="App">
