@@ -17,7 +17,7 @@ export const SignUpPage = () => {
         </button>
       </form>
       <p>
-        Already a user? <Link to="/postic/login">Sign in</Link>
+        Already a user? <Link to="/login">Sign in</Link>
       </p>
     </div>
   );

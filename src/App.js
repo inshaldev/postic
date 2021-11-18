@@ -14,19 +14,15 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/postic"
+            path="/"
             element={
-              userLoggedIn ? (
-                <Navigate replace to="/postic/home" />
-              ) : (
-                <MainPage />
-              )
+              userLoggedIn ? <Navigate replace to="/home" /> : <MainPage />
             }
             exact
           />
-          <Route path="/postic/home" element={<HomePage />} />
-          <Route path="/postic/login" element={<LoginPage />} />
-          <Route path="/postic/signup" element={<SignUpPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
         </Routes>
       </BrowserRouter>
     </div>

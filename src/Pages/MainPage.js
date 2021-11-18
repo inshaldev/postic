@@ -12,12 +12,12 @@ export const MainPage = () => {
         <button>Sign up with Apple</button>
         <div className="hr w-100"></div>
 
-        <Link to="/postic/signup">
+        <Link to="/signup">
           <button className="primary">Sign up with Email</button>
         </Link>
         <div className="main-login-section w-100">
           <p>Already have an account?</p>
-          <Link to="/postic/login">
+          <Link to="/login">
             <button>Log In</button>
           </Link>
         </div>
