@@ -15,9 +15,11 @@ export const SignUpPage = () => {
         <input type="text" placeholder="Username" />
         <input type="email" placeholder="Email address" />
         <input type="password" placeholder="Password" />
-        <button type="submit" className="primary">
-          Get Started
-        </button>
+        <Link to="/home">
+          <button type="submit" className="primary">
+            Get Started
+          </button>
+        </Link>
       </form>
       <p>
         Already a user? <Link to="/login">Log In</Link>

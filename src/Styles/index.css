@@ -4,6 +4,8 @@
   --chelsea-blue: #034694;
   --azure: #007fff;
   --capri: #00bfff;
+  --candy-red: #ff0800;
+  --crimson: #e32636;
 }
 * {
   box-sizing: border-box;
@@ -74,12 +76,20 @@ button:hover {
   border: 1px solid lightgray;
   background-color: rgb(25, 25, 25);
 }
-button.primary {
+.primary {
   border: 1px solid transparent;
   background-color: var(--chelsea-blue);
 }
-button.primary:hover {
+.primary:hover {
+  border: 1px solid transparent;
   background-color: var(--azure);
+}
+.red {
+  border: 1px solid transparent;
+  background-color: var(--crimson);
+}
+.red:hover {
+  background-color: var(--candy-red);
 }
 .hr {
   border-top: 1px solid #2e2e2e;

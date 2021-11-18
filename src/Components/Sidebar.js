@@ -1,53 +1,42 @@
 import '../Styles/components.css';
 import React from 'react';
 import {
-  FaBell,
-  FaCog,
+  // FaBell,
+  // FaCog,
   FaEnvelope,
-  FaHome,
-  FaPlusCircle,
-  FaUser,
+  // FaHome,
+  // FaPlusCircle,
+  // FaUser,
 } from 'react-icons/fa';
+import { useData } from '../Context/Contexts';
 import { Link } from 'react-router-dom';
 
 export const Sidebar = () => {
+  const { setDisplayNewPost, currentUser } = useData();
+
+  const setDisplay = () => {
+    setDisplayNewPost((value) => !value);
+  };
+
   return (
-    <ul className="sidebar">
-      <Link to="/home" className="sidebar-link">
-        <li>
-          <FaHome className="sidebar-icon" /> Home
-        </li>
-      </Link>
-      <Link to="/home" className="sidebar-link">
-        <li>
-          <FaBell className="sidebar-icon" />
-          Notifications
-        </li>
-      </Link>
-      <Link to="/home" className="sidebar-link">
-        <li>
+    <div className="sidebar">
+      <div className="user-info">
+        <h1>{currentUser.name}</h1>
+        <h3>{currentUser.username}</h3>
+      </div>
+      <ul className="sidebar-list">
+        <li className="sidebar-item normal">
           <FaEnvelope className="sidebar-icon" />
-          Messages
+          Home
         </li>
-      </Link>
-      <Link to="/home" className="sidebar-link">
-        <li>
-          <FaUser className="sidebar-icon" />
-          Profile
-        </li>
-      </Link>
-      <Link to="/home" className="sidebar-link">
-        <li>
-          <FaCog className="sidebar-icon" />
-          Settings
-        </li>
-      </Link>
-      <Link to="/home" className="sidebar-link">
-        <li>
-          <FaPlusCircle className="sidebar-icon" />
+        <li className="sidebar-item new-button primary" onClick={setDisplay}>
+          {/* <FaEnvelope className="sidebar-icon" /> */}
           New Post
         </li>
+      </ul>
+      <Link to="/login">
+        <button className="signout-button">Sign Out</button>
       </Link>
-    </ul>
+    </div>
   );
 };
