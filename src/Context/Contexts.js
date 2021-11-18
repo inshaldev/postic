@@ -20,6 +20,51 @@ export const Contexts = ({ children }) => {
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
     },
+    {
+      id: 1,
+      name: 'Sun Tzu',
+      username: '@theartofwar',
+      likes: 0,
+      comments: 0,
+      content:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
+    },
+    {
+      id: 1,
+      name: 'Sun Tzu',
+      username: '@theartofwar',
+      likes: 0,
+      comments: 0,
+      content:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
+    },
+    {
+      id: 1,
+      name: 'Sun Tzu',
+      username: '@theartofwar',
+      likes: 0,
+      comments: 0,
+      content:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
+    },
+    {
+      id: 1,
+      name: 'Sun Tzu',
+      username: '@theartofwar',
+      likes: 0,
+      comments: 0,
+      content:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
+    },
+    {
+      id: 1,
+      name: 'Sun Tzu',
+      username: '@theartofwar',
+      likes: 0,
+      comments: 0,
+      content:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
+    },
   ]);
 
   const contextValue = {

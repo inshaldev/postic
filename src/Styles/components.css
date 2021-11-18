@@ -46,6 +46,7 @@
 }
 @media only screen and (max-width: 992px) {
   .sidebar {
+    background-color: black;
     position: fixed;
     bottom: 0;
     width: 100%;
