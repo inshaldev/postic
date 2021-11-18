@@ -1,0 +1,7 @@
+.homepage {
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.25fr 0.5fr 2fr 1fr 0.25fr;
+  grid-template-rows: auto;
+}

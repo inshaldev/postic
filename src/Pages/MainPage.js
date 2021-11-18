@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const MainPage = () => {
+  useEffect(() => (document.title = 'Postic - Share your thoughts!'), []);
+
   return (
     <div className="main-page">
       <h1 className="main-heading">Start using Postic now!</h1>
