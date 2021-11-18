@@ -7,7 +7,7 @@ import { SignUpPage } from './Pages/SignUpPage';
 import './Styles/app.css';
 
 function App() {
-  const [userLoggedIn, setUserLoggedIn] = useState(true);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   return (
     <div className="App">

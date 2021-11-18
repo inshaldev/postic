@@ -42,7 +42,6 @@
 }
 .sidebar-list a.primary {
   background-color: var(--chelsea-blue);
-  width: 60%;
 }
 .sidebar .new-post {
   align-self: flex-start;
