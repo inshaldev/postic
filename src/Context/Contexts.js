@@ -4,6 +4,7 @@ const Data = createContext();
 export const useData = () => useContext(Data);
 
 export const Contexts = ({ children }) => {
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [displayNewPost, setDisplayNewPost] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     id: '350z',
@@ -26,8 +27,7 @@ export const Contexts = ({ children }) => {
       username: '@theartofwar',
       likes: 0,
       comments: 0,
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit.Vero porro quod ipsam eos saepe mollitia? Adipisci alias unde officiis itaque!',
+      content: '',
     },
     {
       id: 1,
@@ -74,6 +74,8 @@ export const Contexts = ({ children }) => {
     setPosts,
     currentUser,
     setCurrentUser,
+    userLoggedIn,
+    setUserLoggedIn,
   };
   return <Data.Provider value={contextValue}>{children}</Data.Provider>;
 };

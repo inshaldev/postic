@@ -2,20 +2,20 @@ import '../Styles/components.css';
 import React from 'react';
 import {
   // FaBell,
-  // FaCog,
-  FaEnvelope,
-  // FaHome,
-  // FaPlusCircle,
-  // FaUser,
+  FaCog,
+  FaHome,
+  FaPlusCircle,
+  FaUser,
 } from 'react-icons/fa';
 import { useData } from '../Context/Contexts';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Sidebar = () => {
-  const { setDisplayNewPost, currentUser } = useData();
-
-  const setDisplay = () => {
-    setDisplayNewPost((value) => !value);
+  const navigate = useNavigate();
+  const { currentUser, setUserLoggedIn } = useData();
+  const handleSignOut = () => {
+    setUserLoggedIn(false);
+    navigate('/login');
   };
 
   return (
@@ -25,18 +25,40 @@ export const Sidebar = () => {
         <h3>{currentUser.username}</h3>
       </div>
       <ul className="sidebar-list">
-        <li className="sidebar-item normal">
-          <FaEnvelope className="sidebar-icon" />
-          Home
-        </li>
-        <li className="sidebar-item new-button primary" onClick={setDisplay}>
-          {/* <FaEnvelope className="sidebar-icon" /> */}
-          New Post
-        </li>
+        <Link to="/home">
+          <li className="sidebar-item normal">
+            <FaHome className="sidebar-icon" />
+            <span class="sidebar-item-text">Home</span>
+          </li>
+        </Link>
+        <Link to="/profile">
+          <li className="sidebar-item normal">
+            <FaUser className="sidebar-icon" />
+            <span class="sidebar-item-text">Profile</span>
+          </li>
+        </Link>
+        {/* <Link to="/notifications">
+          <li className="sidebar-item normal">
+            <FaBell className="sidebar-icon" />
+            <span class="sidebar-item-text">Notifications</span>
+          </li>
+        </Link> */}
+        <Link to="/settings">
+          <li className="sidebar-item normal">
+            <FaCog className="sidebar-icon" />
+            <span class="sidebar-item-text">Settings</span>
+          </li>
+        </Link>
+        <Link to="/new">
+          <li className="sidebar-item new-button primary">
+            <FaPlusCircle className="sidebar-icon" />
+            <span class="sidebar-item-text">New Post</span>
+          </li>
+        </Link>
       </ul>
-      <Link to="/login" className="signout-button-link">
-        <button className="signout-button">Sign Out</button>
-      </Link>
+      <button className="signout-button" onClick={handleSignOut}>
+        Sign Out
+      </button>
     </div>
   );
 };
