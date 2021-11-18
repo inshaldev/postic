@@ -34,7 +34,7 @@ export const Sidebar = () => {
           New Post
         </li>
       </ul>
-      <Link to="/login">
+      <Link to="/login" className="signout-button-link">
         <button className="signout-button">Sign Out</button>
       </Link>
     </div>
