@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router';
 
 export const NewPostPage = () => {
   const postContent = useRef();
-  const { userLoggedIn, addPost } = useData();
+  const { currentUser, addPost } = useData();
   const navigate = useNavigate();
   useEffect(() => {
-    return !userLoggedIn ? navigate('/') : false;
+    return currentUser === null ? navigate('/') : '';
   });
 
   return (

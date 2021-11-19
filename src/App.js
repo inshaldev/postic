@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { Sidebar } from './Components/Sidebar';
 import { useData } from './Context/Contexts';
@@ -12,8 +11,7 @@ import { SignUpPage } from './Pages/SignUpPage';
 import './Styles/app.css';
 
 function App() {
-  const { userLoggedIn } = useData();
-
+  const { currentUser } = useData();
   return (
     <div className="App">
       <BrowserRouter>
@@ -21,18 +19,27 @@ function App() {
           <Route
             path="/"
             element={
-              userLoggedIn ? <Navigate replace to="/home" /> : <MainPage />
+              currentUser !== null ? (
+                <Navigate replace to="/home" />
+              ) : (
+                <MainPage />
+              )
             }
             exact
           />
-          <Route path="/home" element={<HomePage />} />
+          <Route
+            path="/home"
+            element={
+              currentUser === null ? <Navigate replace to="/" /> : <HomePage />
+            }
+          />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/new" element={<NewPostPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
-        {userLoggedIn ? <Sidebar /> : ''}
+        {currentUser !== null ? <Sidebar /> : ''}
       </BrowserRouter>
     </div>
   );

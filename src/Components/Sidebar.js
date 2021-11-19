@@ -12,17 +12,21 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export const Sidebar = () => {
   const navigate = useNavigate();
-  const { currentUser, setUserLoggedIn } = useData();
-  const handleSignOut = () => {
-    setUserLoggedIn(false);
-    navigate('/login');
+  const { currentUser, logoutAccount } = useData();
+  const handleSignOut = async () => {
+    try {
+      await logoutAccount();
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="sidebar">
       <div className="user-info">
-        <h1>{currentUser.name}</h1>
-        <h3>{currentUser.username}</h3>
+        <h6>{currentUser?.email}</h6>
+        <h3>{currentUser?.username}</h3>
       </div>
       <ul className="sidebar-list">
         <Link to="/home">
