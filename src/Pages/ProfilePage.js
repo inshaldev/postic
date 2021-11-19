@@ -3,7 +3,7 @@ import { MoonLoader } from 'react-spinners';
 import { useData } from '../Context/Contexts';
 
 export const ProfilePage = () => {
-  const { currentUserData, loadingState } = useData();
+  const { currentUserData } = useData();
   // const navigate = useNavigate();
   // useEffect(() => {
   //   return !userLoggedIn ? navigate('/') : false;
@@ -11,7 +11,7 @@ export const ProfilePage = () => {
 
   return (
     <>
-      {loadingState === true ? (
+      {currentUserData !== null ? (
         <div className="profile fl-col-cen-cen">
           <h2>
             Name: {`${currentUserData?.firstName} ${currentUserData?.lastName}`}

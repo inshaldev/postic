@@ -34,9 +34,36 @@ function App() {
           />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/new" element={<NewPostPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route
+            path="/settings"
+            element={
+              currentUser === null ? (
+                <Navigate replace to="/" />
+              ) : (
+                <SettingsPage />
+              )
+            }
+          />
+          <Route
+            path="/new"
+            element={
+              currentUser === null ? (
+                <Navigate replace to="/" />
+              ) : (
+                <NewPostPage />
+              )
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              currentUser === null ? (
+                <Navigate replace to="/" />
+              ) : (
+                <ProfilePage />
+              )
+            }
+          />
         </Routes>
         {currentUserData !== null && loadingState === false ? <Sidebar /> : ''}
       </BrowserRouter>
