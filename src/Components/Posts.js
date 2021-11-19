@@ -9,8 +9,11 @@ export const Posts = () => {
           <div className="post" key={post.id}>
             <div className="post-inline">
               <div className="post-user-info">
-                <h1>{post.authorName}</h1>
-                <h3>{post.authorUsername}</h3>
+                <p className="user-logo post-logo">{post.authorLogo}</p>
+                <div>
+                  <h1>{post.authorName}</h1>
+                  <h3>{post.authorUsername}</h3>
+                </div>
               </div>
               {post.authorUID === currentUser.uid ? (
                 <button

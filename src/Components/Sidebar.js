@@ -10,14 +10,17 @@ import {
 } from 'react-icons/fa';
 import { useData } from '../Context/Contexts';
 import { Link, useNavigate } from 'react-router-dom';
+import { MoonLoader } from 'react-spinners';
 
 export const Sidebar = () => {
   const navigate = useNavigate();
-  const { currentUserData, logoutAccount } = useData();
+  const { currentUserData, logoutAccount, loadingState } = useData();
   const handleSignOut = async () => {
     try {
       await logoutAccount();
-      navigate('/login');
+      if (loadingState) {
+        navigate('/login');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -25,10 +28,17 @@ export const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <div className="user-info">
-        <h2>{`${currentUserData?.firstName}`}</h2>
-        <h4>{currentUserData?.userName}</h4>
-      </div>
+      {currentUserData === null ? (
+        <MoonLoader color={'#f5f5f5'} />
+      ) : (
+        <div className="user-info">
+          <p className="user-logo">{currentUserData?.userLogo}</p>
+          <div className="user-info-name">
+            <h2>{`${currentUserData?.firstName}`}</h2>
+            <h4>{currentUserData?.userName}</h4>
+          </div>
+        </div>
+      )}
       <ul className="sidebar-list">
         <Link to="/home">
           <li className="sidebar-item normal">

@@ -50,9 +50,42 @@
   margin-bottom: 1rem;
   width: 90%;
 }
+.user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.user-logo {
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-weight: 900;
+  font-size: 2vw;
+  color: var(--azure);
+  padding: 0;
+  margin: 0;
+  margin-right: 1rem;
+  width: 5vw;
+  height: 5vw;
+}
 
 /* POSTS */
-
+.post-logo {
+  margin-right: 0.5rem;
+  font-size: 1.5vw;
+  width: 4vw;
+  height: 4vw;
+}
+.post-user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 .posts {
   display: flex;
   flex-direction: column;
@@ -94,7 +127,7 @@
 }
 @media only screen and (max-width: 600px) {
   .posts {
-    width: 80%;
+    width: 90%;
   }
 }
 @media only screen and (min-width: 601px) {

@@ -1,36 +1,47 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useData } from '../Context/Contexts';
 import { useNavigate } from 'react-router';
+import { PulseLoader } from 'react-spinners';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
-  const email = useRef();
-  const password = useRef();
-  const [error, setError] = useState('');
-  const { loginAccount, setLoadingState } = useData();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { error, setError, loginAccount, loadingState, setLoadingState } =
+    useData();
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      await loginAccount(email.current.value, password.current.value);
-      navigate('/');
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    if (!email) {
+      setError('WARNING: Type your Email!');
+    } else if (!password) {
+      setError('WARNING: Type your Password!');
+    } else if (email && password) {
       setLoadingState(true);
-    } catch {
-      setError('There is some problem');
+      try {
+        await loginAccount(email, password).then(() => {
+          if (loginAccount()) {
+            navigate('/');
+          }
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
     }
-    setLoadingState(false);
   };
   return (
     <div className="login-page">
       <h1>Log In to Postic</h1>
       <form className="login-form" onSubmit={handleLogin}>
-        <input type="email" placeholder="Email address" ref={email} />
-        <input type="password" placeholder="Password" ref={password} />
+        <input type="email" placeholder="Email address" ref={emailRef} />
+        <input type="password" placeholder="Password" ref={passwordRef} />
         <button type="submit" className="primary">
-          Log In
+          {loadingState === true ? <PulseLoader color={'#f5f5f5'} /> : 'Log In'}
         </button>
         <button className="w-auto">Forgot password?</button>
-        <p>{error}</p>
+        {error ? <p className="form-error-message">{error}</p> : ''}
       </form>
       <p>
         Don't have an account? <Link to="/signup">Sign Up</Link>

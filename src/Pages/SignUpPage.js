@@ -1,9 +1,10 @@
 import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { PulseLoader } from 'react-spinners';
 import { useData } from '../Context/Contexts';
 export const SignUpPage = () => {
   const navigate = useNavigate();
-  const { registerAccount } = useData();
+  const { registerAccount, loadingState, setLoadingState } = useData();
   const firstName = useRef();
   const lastName = useRef();
   const userName = useRef();
@@ -12,17 +13,22 @@ export const SignUpPage = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
+      setLoadingState(true);
       await registerAccount(
         email.current.value,
         password.current.value,
         firstName.current.value,
         lastName.current.value,
         userName.current.value
-      );
+      ).then(() => {
+        if (registerAccount()) {
+          navigate('/');
+        }
+      });
     } catch (error) {
       console.log(error);
     }
-    navigate('/');
+    setLoadingState(false);
   };
   return (
     <div className="signup-page">
@@ -46,7 +52,11 @@ export const SignUpPage = () => {
         <input type="email" placeholder="Email address" ref={email} />
         <input type="password" placeholder="Password" ref={password} />
         <button type="submit" className="primary">
-          Get Started
+          {loadingState === true ? (
+            <PulseLoader color={'#f5f5f5'} />
+          ) : (
+            'Get Started'
+          )}
         </button>
       </form>
       <p>

@@ -11,7 +11,7 @@ import { SignUpPage } from './Pages/SignUpPage';
 import './Styles/app.css';
 
 function App() {
-  const { currentUser, currentUserData } = useData();
+  const { currentUser, currentUserData, loadingState } = useData();
   return (
     <div className="App">
       <BrowserRouter>
@@ -38,7 +38,7 @@ function App() {
           <Route path="/new" element={<NewPostPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
-        {currentUserData !== null ? <Sidebar /> : ''}
+        {currentUserData !== null && loadingState === false ? <Sidebar /> : ''}
       </BrowserRouter>
     </div>
   );

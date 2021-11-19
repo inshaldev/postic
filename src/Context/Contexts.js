@@ -23,6 +23,7 @@ const Data = createContext();
 export const useData = () => useContext(Data);
 
 export const Contexts = ({ children }) => {
+  const [error, setError] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
   const [currentUserData, setCurrentUserData] = useState(null);
   const [loadingState, setLoadingState] = useState(false);
@@ -41,20 +42,25 @@ export const Contexts = ({ children }) => {
       fetchUserData(currentUser.uid);
     }
   }, [currentUser]);
-  useEffect(() => {
-    if (currentUserData) {
-      setLoadingState(false);
-    } else if (currentUserData === null) {
-      setLoadingState(true);
-    }
-  }, [currentUserData]);
+  useEffect(() => console.log(currentUserData), [currentUserData]);
 
   // USER FUNCTIONS:
   const loginAccount = async (email, pass) => {
     try {
-      await signInWithEmailAndPassword(auth, email, pass).then();
-    } catch (err) {
-      console.log(err);
+      await signInWithEmailAndPassword(auth, email, pass);
+      setLoadingState(false);
+      return true;
+    } catch (error) {
+      console.log(error);
+      if (error.message.includes('email.current')) {
+        setError('There is no account registered with this Email address.');
+      } else if (error.message.includes('(auth/missing-email)')) {
+        setError('');
+      } else {
+        setError(error.message);
+      }
+      setLoadingState(false);
+      return false;
     }
   };
   const registerAccount = async (
@@ -67,24 +73,35 @@ export const Contexts = ({ children }) => {
     try {
       await createUserWithEmailAndPassword(auth, email, pass).then(
         async (userCred) => {
+          const firstLetter = firstName.charAt(0);
+          const lastLetter = lastName.charAt(0);
+          const logo = (firstLetter + lastLetter).toString();
           await setDoc(doc(db, 'users', userCred.user.uid), {
             firstName: firstName,
             lastName: lastName,
             userName: `@${userName}`,
             eMail: email,
+            userLogo: logo,
           }).then(async () => {
             const userData = await getDoc(doc(db, 'users', userCred.user.uid));
             setCurrentUserData(userData.data());
           });
         }
       );
+      return true;
     } catch (err) {
       console.log(err);
+      return false;
     }
   };
   const logoutAccount = async () => {
-    signOut(auth);
+    setLoadingState(true);
+
+    setTimeout(() => {
+      signOut(auth);
+    }, 800);
     setCurrentUserData(null);
+    setLoadingState(false);
   };
 
   // POSTS:
@@ -94,6 +111,7 @@ export const Contexts = ({ children }) => {
       authorName: `${currentUserData.firstName} ${currentUserData.lastName}`,
       authorUsername: currentUserData.userName,
       authorUID: currentUser.uid,
+      authorLogo: currentUserData.userLogo,
       content: content,
       likes: 0,
       comments: 0,
@@ -135,6 +153,8 @@ export const Contexts = ({ children }) => {
     loadingState,
     setLoadingState,
     currentUserData,
+    error,
+    setError,
   };
   return <Data.Provider value={contextValue}>{children}</Data.Provider>;
 };

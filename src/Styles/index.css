@@ -99,3 +99,22 @@ button:active {
   border-top: 1px solid #2e2e2e;
   margin-top: 1rem;
 }
+.loader {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #252525;
+  font-size: 3rem;
+  height: 128px;
+  width: 128px;
+}
+.form-error-message {
+  border-radius: 4px;
+  background-color: var(--candy-red);
+  font-weight: 700;
+  padding: 0.5rem;
+  width: auto;
+  max-width: 120%;
+  text-align: center;
+}
