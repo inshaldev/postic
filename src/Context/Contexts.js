@@ -32,16 +32,27 @@ export const Contexts = ({ children }) => {
     });
     return unSub;
   }, []);
+  useEffect(() => {
+    if (currentUser !== null) {
+      const fetchUserData = async (id) => {
+        const userData = await getDoc(doc(db, 'users', id));
+        setCurrentUserData(userData.data());
+      };
+      fetchUserData(currentUser.uid);
+    }
+  }, [currentUser]);
+  useEffect(() => {
+    if (currentUserData) {
+      setLoadingState(false);
+    } else if (currentUserData === null) {
+      setLoadingState(true);
+    }
+  }, [currentUserData]);
 
   // USER FUNCTIONS:
   const loginAccount = async (email, pass) => {
     try {
-      await signInWithEmailAndPassword(auth, email, pass).then(
-        async (userCred) => {
-          const userData = await getDoc(doc(db, 'users', userCred.user.uid));
-          setCurrentUserData(userData.data());
-        }
-      );
+      await signInWithEmailAndPassword(auth, email, pass).then();
     } catch (err) {
       console.log(err);
     }
@@ -60,6 +71,7 @@ export const Contexts = ({ children }) => {
             firstName: firstName,
             lastName: lastName,
             userName: `@${userName}`,
+            eMail: email,
           }).then(async () => {
             const userData = await getDoc(doc(db, 'users', userCred.user.uid));
             setCurrentUserData(userData.data());
@@ -72,6 +84,7 @@ export const Contexts = ({ children }) => {
   };
   const logoutAccount = async () => {
     signOut(auth);
+    setCurrentUserData(null);
   };
 
   // POSTS:
@@ -121,6 +134,7 @@ export const Contexts = ({ children }) => {
     registerAccount,
     loadingState,
     setLoadingState,
+    currentUserData,
   };
   return <Data.Provider value={contextValue}>{children}</Data.Provider>;
 };

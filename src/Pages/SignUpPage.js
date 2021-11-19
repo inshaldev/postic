@@ -22,7 +22,7 @@ export const SignUpPage = () => {
     } catch (error) {
       console.log(error);
     }
-    navigate('/home');
+    navigate('/');
   };
   return (
     <div className="signup-page">

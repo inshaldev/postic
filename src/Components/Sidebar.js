@@ -2,9 +2,10 @@ import '../Styles/components.css';
 import React from 'react';
 import {
   // FaBell,
-  FaCog,
+  // FaCog,
   FaHome,
   FaPlusCircle,
+  FaSignOutAlt,
   FaUser,
 } from 'react-icons/fa';
 import { useData } from '../Context/Contexts';
@@ -12,7 +13,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export const Sidebar = () => {
   const navigate = useNavigate();
-  const { currentUser, logoutAccount } = useData();
+  const { currentUserData, logoutAccount } = useData();
   const handleSignOut = async () => {
     try {
       await logoutAccount();
@@ -25,8 +26,8 @@ export const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="user-info">
-        <h6>{currentUser?.email}</h6>
-        <h3>{currentUser?.username}</h3>
+        <h2>{`${currentUserData?.firstName}`}</h2>
+        <h4>{currentUserData?.userName}</h4>
       </div>
       <ul className="sidebar-list">
         <Link to="/home">
@@ -47,18 +48,25 @@ export const Sidebar = () => {
             <span className="sidebar-item-text">Notifications</span>
           </li>
         </Link> */}
-        <Link to="/settings">
+        {/* <Link to="/settings">
           <li className="sidebar-item normal">
             <FaCog className="sidebar-icon" />
             <span className="sidebar-item-text">Settings</span>
           </li>
-        </Link>
+        </Link> */}
         <Link to="/new">
           <li className="sidebar-item new-button primary">
             <FaPlusCircle className="sidebar-icon" />
             <span className="sidebar-item-text">New Post</span>
           </li>
         </Link>
+        <li
+          className="sidebar-item new-button normal signoutLink"
+          onClick={handleSignOut}
+        >
+          <FaSignOutAlt className="sidebar-icon" />
+          <span className="sidebar-item-text">Sign Out</span>
+        </li>
       </ul>
       <button className="signout-button" onClick={handleSignOut}>
         Sign Out

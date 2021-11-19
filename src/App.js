@@ -11,7 +11,7 @@ import { SignUpPage } from './Pages/SignUpPage';
 import './Styles/app.css';
 
 function App() {
-  const { currentUser } = useData();
+  const { currentUser, currentUserData } = useData();
   return (
     <div className="App">
       <BrowserRouter>
@@ -25,7 +25,6 @@ function App() {
                 <MainPage />
               )
             }
-            exact
           />
           <Route
             path="/home"
@@ -39,7 +38,7 @@ function App() {
           <Route path="/new" element={<NewPostPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
-        {currentUser !== null ? <Sidebar /> : ''}
+        {currentUserData !== null ? <Sidebar /> : ''}
       </BrowserRouter>
     </div>
   );

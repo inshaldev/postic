@@ -183,7 +183,8 @@
     width: 100%;
     text-decoration: none;
   }
-  .new-button svg {
+  .new-button svg,
+  .signoutLink {
     display: none;
     visibility: hidden;
   }

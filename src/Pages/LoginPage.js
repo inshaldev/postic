@@ -13,7 +13,7 @@ export const LoginPage = () => {
     e.preventDefault();
     try {
       await loginAccount(email.current.value, password.current.value);
-      navigate('/home');
+      navigate('/');
       setLoadingState(true);
     } catch {
       setError('There is some problem');
